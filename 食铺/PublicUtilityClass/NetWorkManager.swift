@@ -11,18 +11,33 @@ import Alamofire
 
 class NetWorkManager: NSObject {
     
-    
-    func request() -> Void {
+  
+
+    /**
+     网络访问接口
+     
+     - parameter josnUrl:         访问url
+     - parameter succuseCallBack: 成功的回调
+     - parameter failCallBack:    失败的回调
+     */
+    static func request(josnUrl:String,succuseCallBack:(callBack:String)->Void,failCallBack:(callBack:String) ->Void) -> Void {
         
-        Alamofire.request(.GET, "https://httpbin.org/get", parameters: ["foo": "bar"])
-            .responseJSON { response in
-                print(response.request)  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
-                
-                if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
+        Alamofire.request(.GET,josnUrl, parameters:nil)
+            .validate()
+            .responseJSON {
+                response in switch response.result {
+                    
+                case .Success:
+                    
+                    print(response.result);
+                    
+                    succuseCallBack(callBack: "成功了哈哈")
+
+                case .Failure(let error):
+                    
+                    failCallBack(callBack: "失败了卧槽")
+                    
+                    print(error)
                 }
         }
     }

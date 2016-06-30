@@ -21,8 +21,33 @@ class SecondViewController: BaseMainViewController,UITableViewDataSource,UITable
         [self.setTitleName("我的")]
         
         self.view.addSubview(initTableView())
+//        
+//        NetWorkManager.request("http://apis.juhe.cn/idcard/index?key=98cb940ac452822dbd3e83895dec2a8d&cardno=430223199505097618",
+//                        callBack: {(callBacll) -> Void in
+//                            print(callBacll)
+//                        }
+//            
+//        )
         
+        let  url = "http://apis.juhe.cn/idcard/index?key=98cb940ac452822dbd3e83895dec2a8d&cardno=430223199505097618"
+        
+            NetWorkManager.request(url, succuseCallBack: { (callBack) in
+              //成功后的回调
+                print(callBack)
+            
+            }){(callBack) in
+                
+               // 失败后的回调
+                print(callBack)
+                
+            }
+    
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func funPrint() -> Void {
+        
+        print("aaaaaaa")
     }
     
 
