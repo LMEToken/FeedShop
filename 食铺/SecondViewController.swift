@@ -45,11 +45,7 @@ class SecondViewController: BaseMainViewController,UITableViewDataSource,UITable
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    func funPrint() -> Void {
-        
-        print("aaaaaaa")
-    }
-    
+ 
 
     func initTableView() -> UITableView {
         
